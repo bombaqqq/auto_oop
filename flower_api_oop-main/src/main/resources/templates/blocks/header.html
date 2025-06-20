@@ -1,0 +1,44 @@
+<div th:fragment="header" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <div class="px-3 py-2 border-bottom" style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+                    <span class="fs-4 fw-bold">Автопарк</span>
+                </a>
+
+                <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0">
+                    <li>
+                        <a href="/"
+                           th:classappend="${request.requestURI == '/'} ? 'nav-link active text-white fw-bold' : 'nav-link text-light'">
+                            <svg class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true"><use xlink:href="#home"/></svg>
+                            Главная
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/crud"
+                           th:classappend="${request.requestURI == '/crud'} ? 'nav-link active text-white fw-bold' : 'nav-link text-light'">
+                            <svg class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true"><use xlink:href="#speedometer2"/></svg>
+                            Автомобили
+                        </a>
+                    </li>
+                    <li sec:authorize="hasRole('ADMIN')">
+                        <a href="/users"
+                           th:classappend="${request.requestURI == '/users'} ? 'nav-link active text-white fw-bold' : 'nav-link text-light'">
+                            <svg class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true"><use xlink:href="#people-circle"/></svg>
+                            Пользователи
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="text-end p-2" style="background-color: #f8f9fa;">
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-outline-primary">Выйти</button>
+        </form>
+    </div>
+</div>
